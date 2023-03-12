@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS `suunnittelutehtava1_emil_hellgren`.`phone_numbers` (
   `phone_number` VARCHAR(45) NOT NULL,
   `customers_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `phone_number_UNIQUE` (`phone_number` ASC) VISIBLE,
-  INDEX `fk_phone_numbers_customers_idx` (`customers_id` ASC) VISIBLE,
+  UNIQUE INDEX `phone_number_UNIQUE` (`phone_number` ASC),
+  INDEX `fk_phone_numbers_customers_idx` (`customers_id` ASC),
   CONSTRAINT `fk_phone_numbers_customers`
     FOREIGN KEY (`customers_id`)
     REFERENCES `suunnittelutehtava1_emil_hellgren`.`customers` (`id`)
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `suunnittelutehtava1_emil_hellgren`.`countries` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `country_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `country_name_UNIQUE` (`country_name` ASC) VISIBLE)
+  UNIQUE INDEX `country_name_UNIQUE` (`country_name` ASC))
 ENGINE = InnoDB;
 
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `suunnittelutehtava1_emil_hellgren`.`cities` (
   `city_name` VARCHAR(45) NOT NULL,
   `countries_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_cities_countries1_idx` (`countries_id` ASC) VISIBLE,
+  INDEX `fk_cities_countries1_idx` (`countries_id` ASC),
   CONSTRAINT `fk_cities_countries1`
     FOREIGN KEY (`countries_id`)
     REFERENCES `suunnittelutehtava1_emil_hellgren`.`countries` (`id`)
@@ -79,8 +79,8 @@ CREATE TABLE IF NOT EXISTS `suunnittelutehtava1_emil_hellgren`.`zip_codes` (
   `zip_code` VARCHAR(45) NOT NULL,
   `cities_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `zip_code_UNIQUE` (`zip_code` ASC) VISIBLE,
-  INDEX `fk_zip_codes_cities1_idx` (`cities_id` ASC) VISIBLE,
+  UNIQUE INDEX `zip_code_UNIQUE` (`zip_code` ASC),
+  INDEX `fk_zip_codes_cities1_idx` (`cities_id` ASC),
   CONSTRAINT `fk_zip_codes_cities1`
     FOREIGN KEY (`cities_id`)
     REFERENCES `suunnittelutehtava1_emil_hellgren`.`cities` (`id`)
@@ -98,9 +98,9 @@ CREATE TABLE IF NOT EXISTS `suunnittelutehtava1_emil_hellgren`.`addresses` (
   `customers_id` INT NOT NULL,
   `zip_codes_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_addresses_customers1_idx` (`customers_id` ASC) VISIBLE,
-  UNIQUE INDEX `customers_id_UNIQUE` (`customers_id` ASC) VISIBLE,
-  INDEX `fk_addresses_zip_codes1_idx` (`zip_codes_id` ASC) VISIBLE,
+  INDEX `fk_addresses_customers1_idx` (`customers_id` ASC),
+  UNIQUE INDEX `customers_id_UNIQUE` (`customers_id` ASC),
+  INDEX `fk_addresses_zip_codes1_idx` (`zip_codes_id` ASC),
   CONSTRAINT `fk_addresses_customers1`
     FOREIGN KEY (`customers_id`)
     REFERENCES `suunnittelutehtava1_emil_hellgren`.`customers` (`id`)
@@ -191,8 +191,8 @@ CREATE TABLE IF NOT EXISTS `suunnittelutehtava1_emil_hellgren`.`models` (
   `registration_year_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_models_cars1_idx` (`cars_id` ASC) VISIBLE,
-  INDEX `fk_models_transmission_type1_idx` (`transmission_type_id` ASC) VISIBLE,
-  INDEX `fk_models_registration_year1_idx` (`registration_year_id` ASC) VISIBLE,
+  INDEX `fk_models_transmission_type1_idx` (`transmission_type_id` ASC),
+  INDEX `fk_models_registration_year1_idx` (`registration_year_id` ASC),
   CONSTRAINT `fk_models_cars1`
     FOREIGN KEY (`cars_id`)
     REFERENCES `suunnittelutehtava1_emil_hellgren`.`cars` (`id`)
@@ -218,8 +218,8 @@ CREATE TABLE IF NOT EXISTS `suunnittelutehtava1_emil_hellgren`.`system_users_has
   `system_users_id` INT NOT NULL,
   `customers_id` INT NOT NULL,
   PRIMARY KEY (`system_users_id`, `customers_id`),
-  INDEX `fk_system_users_has_customers_customers1_idx` (`customers_id` ASC) VISIBLE,
-  INDEX `fk_system_users_has_customers_system_users1_idx` (`system_users_id` ASC) VISIBLE,
+  INDEX `fk_system_users_has_customers_customers1_idx` (`customers_id` ASC),
+  INDEX `fk_system_users_has_customers_system_users1_idx` (`system_users_id` ASC),
   CONSTRAINT `fk_system_users_has_customers_system_users1`
     FOREIGN KEY (`system_users_id`)
     REFERENCES `suunnittelutehtava1_emil_hellgren`.`system_users` (`id`)
@@ -240,8 +240,8 @@ CREATE TABLE IF NOT EXISTS `suunnittelutehtava1_emil_hellgren`.`system_users_has
   `system_users_id` INT NOT NULL,
   `rentals_id` INT NOT NULL,
   PRIMARY KEY (`system_users_id`, `rentals_id`),
-  INDEX `fk_system_users_has_rentals_rentals1_idx` (`rentals_id` ASC) VISIBLE,
-  INDEX `fk_system_users_has_rentals_system_users1_idx` (`system_users_id` ASC) VISIBLE,
+  INDEX `fk_system_users_has_rentals_rentals1_idx` (`rentals_id` ASC),
+  INDEX `fk_system_users_has_rentals_system_users1_idx` (`system_users_id` ASC),
   CONSTRAINT `fk_system_users_has_rentals_system_users1`
     FOREIGN KEY (`system_users_id`)
     REFERENCES `suunnittelutehtava1_emil_hellgren`.`system_users` (`id`)
@@ -264,8 +264,8 @@ CREATE TABLE IF NOT EXISTS `suunnittelutehtava1_emil_hellgren`.`credentials` (
   `password` VARCHAR(45) NOT NULL,
   `system_users_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
-  INDEX `fk_credentials_system_users1_idx` (`system_users_id` ASC) VISIBLE,
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
+  INDEX `fk_credentials_system_users1_idx` (`system_users_id` ASC),
   CONSTRAINT `fk_credentials_system_users1`
     FOREIGN KEY (`system_users_id`)
     REFERENCES `suunnittelutehtava1_emil_hellgren`.`system_users` (`id`)
